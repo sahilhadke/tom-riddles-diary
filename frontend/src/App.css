@@ -86,7 +86,7 @@
 }
 
 .diary-page {
-  width: 100%;
+  width: 60%;
   max-width: 700px;
   height: 80vh;
   position: relative;
@@ -94,7 +94,7 @@
     /* Paper texture */
     url('https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/00482fb6-6f66-4e0f-8d86-2e445c07ac9a/d4gvxp6-8d6e27c1-7f70-4e18-a06c-195c4631ab24.jpg?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7InBhdGgiOiJcL2ZcLzAwNDgyZmI2LTZmNjYtNGUwZi04ZDg2LTJlNDQ1YzA3YWM5YVwvZDRndnhwNi04ZDZlMjdjMS03ZjcwLTRlMTgtYTA2Yy0xOTVjNDYzMWFiMjQuanBnIn1dXSwiYXVkIjpbInVybjpzZXJ2aWNlOmZpbGUuZG93bmxvYWQiXX0.6HhWmWuWin4B1GyI3L6sNj4kh5EygWfv4Ao0Gd7sMhs'),
     /* Gradient for aged paper */
-    linear-gradient(to bottom, #f5e7d0 0%, #e2d1b3 100%);
+    linear-gradient(to bottom, #fa9a00 0%, #000000 100%);
   box-shadow: 
     0 0 10px rgba(0, 0, 0, 0.5),
     inset 0 0 30px rgba(0, 0, 0, 0.2);
