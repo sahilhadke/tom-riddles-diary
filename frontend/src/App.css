@@ -1,0 +1,209 @@
+/* Add this at the top of your CSS */
+@import url('https://fonts.googleapis.com/css2?family=Cinzel+Decorative&family=EB+Garamond:ital,wght@0,400;0,500;1,400&display=swap');
+
+.container {
+  display: flex;
+  height: 100vh;
+  font-family: 'EB Garamond', serif;
+  background-color: #111;
+}
+
+.sidebar {
+  background-color: #1a120b;
+  color: #d3c6b2;
+  width: 200px;
+  padding: 20px;
+  border-right: 1px solid #3a2c1a;
+  box-shadow: 2px 0 10px rgba(0, 0, 0, 0.5);
+}
+
+.title {
+  margin-bottom: 20px;
+  color: #c9b18d;
+  font-size: 1.5rem;
+  text-align: center;
+  border-bottom: 1px solid #3a2c1a;
+  padding-bottom: 10px;
+  font-family: 'Cinzel Decorative', cursive;
+  text-shadow: 1px 1px 2px #000;
+}
+
+.sidebar ul {
+  list-style: none;
+  padding: 0;
+}
+
+.sidebar li {
+  padding: 12px 10px;
+  margin: 8px 0;
+  cursor: pointer;
+  border-radius: 4px;
+  transition: all 0.2s;
+  font-size: 1.1rem;
+  letter-spacing: 0.5px;
+}
+
+.sidebar li:hover,
+.sidebar li.active {
+  background-color: #3a2c1a;
+  color: #f0e6d2;
+}
+
+.content {
+  flex: 1;
+  padding: 40px;
+  background-color: #0a0a0a;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.input-container {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  z-index: 2;
+  pointer-events: AUTO;
+}
+
+.speak-prompt {
+  font-size: 1.8rem;
+  color: #3a2c1a;
+  font-style: italic;
+  text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+  opacity: 0.8;
+}
+
+.textarea-wrapper {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.diary-page {
+  width: 100%;
+  max-width: 700px;
+  height: 80vh;
+  position: relative;
+  background: 
+    /* Paper texture */
+    url('https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/00482fb6-6f66-4e0f-8d86-2e445c07ac9a/d4gvxp6-8d6e27c1-7f70-4e18-a06c-195c4631ab24.jpg?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7InBhdGgiOiJcL2ZcLzAwNDgyZmI2LTZmNjYtNGUwZi04ZDg2LTJlNDQ1YzA3YWM5YVwvZDRndnhwNi04ZDZlMjdjMS03ZjcwLTRlMTgtYTA2Yy0xOTVjNDYzMWFiMjQuanBnIn1dXSwiYXVkIjpbInVybjpzZXJ2aWNlOmZpbGUuZG93bmxvYWQiXX0.6HhWmWuWin4B1GyI3L6sNj4kh5EygWfv4Ao0Gd7sMhs'),
+    /* Gradient for aged paper */
+    linear-gradient(to bottom, #f5e7d0 0%, #e2d1b3 100%);
+  box-shadow: 
+    0 0 10px rgba(0, 0, 0, 0.5),
+    inset 0 0 30px rgba(0, 0, 0, 0.2);
+  border: 1px solid #8b7a5e;
+  border-radius: 2px;
+  overflow: hidden;
+  padding: 40px;
+}
+
+/* Diary page edge effects */
+.diary-page::before,
+.diary-page::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 30px;
+  background: linear-gradient(to right, rgba(0,0,0,0.1), transparent);
+  pointer-events: none;
+}
+
+.diary-page::before {
+  left: 0;
+  background: linear-gradient(to right, rgba(0,0,0,0.1), transparent);
+}
+
+.diary-page::after {
+  right: 0;
+  background: linear-gradient(to left, rgba(0,0,0,0.1), transparent);
+}
+
+.page-content {
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+
+.diary-input {
+  width: 100%;
+  height: 100%;
+  background: none;
+  padding: 20px;
+  border: none;
+  resize: none;
+  font-size: 1.3rem;
+  font-family: 'EB Garamond', serif;
+  color: #3a2c1a;
+  caret-color: #3a2c1a;
+  outline: none;
+  text-align: center;
+}
+
+.diary-input:focus {
+  color: #3a2c1a;
+}
+
+.diary-input::placeholder {
+  color: #3a2c1a;
+  opacity: 0.4;
+  font-style: italic;
+}
+
+@keyframes fadeOut {
+  to {
+    color: transparent;
+  }
+}
+
+.submit-btn {
+  /* Updated button position */
+  position: relative;
+  bottom: auto;
+  right: auto;
+  pointer-events: all;
+}
+
+.submit-btn:hover {
+  background-color: #5a4a42;
+  color: #f0e6d2;
+  transform: scale(1.05);
+}
+
+/* Red ink effect for the button */
+.submit-btn::after {
+  content: '';
+  position: absolute;
+  top: -5px;
+  right: -5px;
+  width: 8px;
+  height: 8px;
+  background-color: #8b0000;
+  border-radius: 50%;
+  opacity: 0.7;
+}
+
+.memories-page {
+  padding: 20px;
+  color: #2c1810;
+}
+
+/* Add some subtle stains to the diary */
+.diary-page::after {
+  content: '';
+  position: absolute;
+  top: 20%;
+  left: 15%;
+  width: 100px;
+  height: 100px;
+  background: radial-gradient(circle, rgba(139,0,0,0.05) 0%, transparent 70%);
+  border-radius: 50%;
+  pointer-events: none;
+}
