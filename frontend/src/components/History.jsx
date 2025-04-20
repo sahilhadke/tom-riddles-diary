@@ -27,7 +27,7 @@ const History = () => {
     '2025-04-02': { gym: false, study: true, music: false },
     '2025-04-03': { gym: true, study: true, music: true },
     '2025-04-04': { gym: false, study: false, music: true },
-    '2025-04-05': { gym: true, study: true, music: true },
+    '2025-04-05': { gym: true, study: true, music: false },
   };
 
   const renderCalendar = () => {
