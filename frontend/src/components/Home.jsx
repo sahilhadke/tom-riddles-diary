@@ -42,18 +42,56 @@ function Home() {
     }, text.length * 80);
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
+  const handleSubmit = async (e) => {
+    if (e) e.preventDefault();
     const text = userInput.trim();
     if (!text) return;
-
-    const timestamp = new Date().toISOString();
-    setJournalEntries(prev => [...prev, { text, timestamp }]);
-
-    addMessage(text, 'user');
+  
+    // Show user's message immediately
+    const userMsg = {
+      id: Date.now(),
+      text,
+      sender: 'user',
+      visible: true,
+      typing: false
+    };
+    setDiaryContent(prev => [userMsg, ...prev]);
+  
+    // Clear input
     setUserInput('');
     inputRef.current.focus();
+  
+    // Send to backend
+    try {
+      const res = await fetch('http://localhost:8081/api/input', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ input: text })
+      });
+      const data = await res.json();
+      const reply = data?.response || "No response received.";
+  
+      const systemMsg = {
+        id: Date.now() + 1,
+        text: reply,
+        sender: 'system',
+        visible: true,
+        typing: false
+      };
+      setDiaryContent(prev => [systemMsg, ...prev]);
+    } catch (error) {
+      const errorMsg = {
+        id: Date.now() + 2,
+        text: 'Error connecting to diary. Please try again later.',
+        sender: 'system',
+        visible: true,
+        typing: false
+      };
+      setDiaryContent(prev => [errorMsg, ...prev]);
+      console.error(error);
+    }
   };
+  
 
   return (
     <div className="app-container">
