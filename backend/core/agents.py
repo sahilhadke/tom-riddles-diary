@@ -33,8 +33,8 @@ class AgentManager:
         {user_input} 
         '''.strip()
         response = model.generate_content(prompt.format(user_input))
-        print("Prompt sent to input determining agent: ", response)
-        print("Response from input determining agent: ", response.text)
+        # print("Prompt sent to input determining agent: ", response)
+        # print("Response from input determining agent: ", response.text)
         return response.text.strip().lower() == "true"
 
     def handle_input(self, user_input: str) -> str:

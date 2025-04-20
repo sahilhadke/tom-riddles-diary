@@ -31,5 +31,5 @@ async def process_input(request: Request):
         return JSONResponse(status_code=400, content={"error": "No input provided"})
     agm = AgentManager()
     response = agm.handle_input(user_input)
-    print("Response: ",response['response'])
+    # print("Response: ",response['response'])
     return {"response": response['response']}
