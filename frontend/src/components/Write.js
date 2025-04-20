@@ -27,7 +27,7 @@ const Write = () => {
               autoFocus
             />
             <button className="submit-btn" onClick={handleSubmit}>
-              ↲ test
+              ↲
             </button>
           </div>
         </div>

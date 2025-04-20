@@ -1,13 +1,29 @@
-/* Add this at the top of your CSS */
+
+/* Import Fonts */
 @import url('https://fonts.googleapis.com/css2?family=Cinzel+Decorative&family=EB+Garamond:ital,wght@0,400;0,500;1,400&display=swap');
 
+/* Custom Font */
+@font-face {
+  font-family: 'fairyfont';
+  src: url('./fonts/fairyfont.TTF') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+/* General Body Styling */
+body {
+  font-family: 'fairyfont', sans-serif;
+}
+
+/* Layout */
 .container {
   display: flex;
   height: 100vh;
-  font-family: 'EB Garamond', serif;
+  font-family: 'fairyfont', serif;
   background-color: #111;
 }
 
+/* Sidebar Styling */
 .sidebar {
   background-color: #1a120b;
   color: #d3c6b2;
@@ -20,35 +36,58 @@
 .title {
   margin-bottom: 20px;
   color: #c9b18d;
-  font-size: 1.5rem;
+  font-size: 2.2rem;
   text-align: center;
   border-bottom: 1px solid #3a2c1a;
   padding-bottom: 10px;
-  font-family: 'Cinzel Decorative', cursive;
+  font-family: 'fairyfont', cursive;
   text-shadow: 1px 1px 2px #000;
 }
 
-.sidebar ul {
-  list-style: none;
-  padding: 0;
-}
-
 .sidebar li {
+  position: relative;
   padding: 12px 10px;
   margin: 8px 0;
   cursor: pointer;
   border-radius: 4px;
-  transition: all 0.2s;
-  font-size: 1.1rem;
-  letter-spacing: 0.5px;
+  transition: all 0.2s ease-in-out;
+  font-size: 1.5rem;
+  letter-spacing: 0.6px;
+  font-family: 'fairyfont', cursive;
 }
 
-.sidebar li:hover,
-.sidebar li.active {
+.sidebar li a {
+  color: inherit;
+  text-decoration: none;
+  display: block;
+  transition: color 0.3s ease;
+}
+
+.sidebar li:hover {
   background-color: #3a2c1a;
   color: #f0e6d2;
 }
 
+.sidebar li.active {
+  background-color: #5c3d25;
+  color: #ffd700;
+  font-weight: bold;
+  text-shadow: 0 0 5px rgba(255, 215, 0, 0.5);
+}
+
+.sidebar li.active::after {
+  content: '';
+  position: absolute;
+  bottom: 5px;
+  left: 10%;
+  width: 80%;
+  height: 2px;
+  background-color: #ffd700;
+  box-shadow: 0 0 6px #ffd700;
+  border-radius: 2px;
+}
+
+/* Content Area */
 .content {
   flex: 1;
   padding: 40px;
@@ -59,6 +98,7 @@
   align-items: center;
 }
 
+/* Input Section */
 .input-container {
   position: absolute;
   top: 50%;
@@ -68,14 +108,14 @@
   align-items: center;
   gap: 20px;
   z-index: 2;
-  pointer-events: AUTO;
+  pointer-events: auto;
 }
 
 .speak-prompt {
   font-size: 1.8rem;
   color: #3a2c1a;
   font-style: italic;
-  text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
   opacity: 0.8;
 }
 
@@ -85,15 +125,14 @@
   height: 100%;
 }
 
+/* Diary Page Styling */
 .diary-page {
   width: 60%;
   max-width: 700px;
   height: 80vh;
   position: relative;
   background: 
-    /* Paper texture */
     url('https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/00482fb6-6f66-4e0f-8d86-2e445c07ac9a/d4gvxp6-8d6e27c1-7f70-4e18-a06c-195c4631ab24.jpg?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7InBhdGgiOiJcL2ZcLzAwNDgyZmI2LTZmNjYtNGUwZi04ZDg2LTJlNDQ1YzA3YWM5YVwvZDRndnhwNi04ZDZlMjdjMS03ZjcwLTRlMTgtYTA2Yy0xOTVjNDYzMWFiMjQuanBnIn1dXSwiYXVkIjpbInVybjpzZXJ2aWNlOmZpbGUuZG93bmxvYWQiXX0.6HhWmWuWin4B1GyI3L6sNj4kh5EygWfv4Ao0Gd7sMhs'),
-    /* Gradient for aged paper */
     linear-gradient(to bottom, #fa9a00 0%, #000000 100%);
   box-shadow: 
     0 0 10px rgba(0, 0, 0, 0.5),
@@ -104,7 +143,6 @@
   padding: 40px;
 }
 
-/* Diary page edge effects */
 .diary-page::before,
 .diary-page::after {
   content: '';
@@ -112,20 +150,28 @@
   top: 0;
   bottom: 0;
   width: 30px;
-  background: linear-gradient(to right, rgba(0,0,0,0.1), transparent);
+  background: linear-gradient(to right, rgba(0, 0, 0, 0.1), transparent);
   pointer-events: none;
-}
-
-.diary-page::before {
-  left: 0;
-  background: linear-gradient(to right, rgba(0,0,0,0.1), transparent);
 }
 
 .diary-page::after {
   right: 0;
-  background: linear-gradient(to left, rgba(0,0,0,0.1), transparent);
+  background: linear-gradient(to left, rgba(0, 0, 0, 0.1), transparent);
 }
 
+.diary-page::after {
+  content: '';
+  position: absolute;
+  top: 20%;
+  left: 15%;
+  width: 100px;
+  height: 100px;
+  background: radial-gradient(circle, rgba(139, 0, 0, 0.05) 0%, transparent 70%);
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+/* Diary Input */
 .page-content {
   width: 100%;
   height: 100%;
@@ -139,8 +185,8 @@
   padding: 20px;
   border: none;
   resize: none;
-  font-size: 1.3rem;
-  font-family: 'EB Garamond', serif;
+  font-size: 1.5rem;
+  font-family: 'fairyfont', serif;
   color: #3a2c1a;
   caret-color: #3a2c1a;
   outline: none;
@@ -157,14 +203,8 @@
   font-style: italic;
 }
 
-@keyframes fadeOut {
-  to {
-    color: transparent;
-  }
-}
-
+/* Button Styling */
 .submit-btn {
-  /* Updated button position */
   position: relative;
   bottom: auto;
   right: auto;
@@ -177,7 +217,6 @@
   transform: scale(1.05);
 }
 
-/* Red ink effect for the button */
 .submit-btn::after {
   content: '';
   position: absolute;
@@ -190,20 +229,15 @@
   opacity: 0.7;
 }
 
+/* Memories Page */
 .memories-page {
   padding: 20px;
   color: #2c1810;
 }
 
-/* Add some subtle stains to the diary */
-.diary-page::after {
-  content: '';
-  position: absolute;
-  top: 20%;
-  left: 15%;
-  width: 100px;
-  height: 100px;
-  background: radial-gradient(circle, rgba(139,0,0,0.05) 0%, transparent 70%);
-  border-radius: 50%;
-  pointer-events: none;
+/* Fade Out Animation */
+@keyframes fadeOut {
+  to {
+    color: transparent;
+  }
 }
