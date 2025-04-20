@@ -1,97 +1,88 @@
-// src/components/Home.js
 import React, { useState, useEffect, useRef } from 'react';
 import '../App.css';
 
 function Home() {
   const [diaryContent, setDiaryContent] = useState([]);
   const [userInput, setUserInput] = useState('');
-  const [journalEntries, setJournalEntries] = useState([]);
   const inputRef = useRef(null);
   const diaryEndRef = useRef(null);
 
   useEffect(() => {
-    inputRef.current.focus();
+    inputRef.current?.focus();
   }, []);
 
   useEffect(() => {
     diaryEndRef.current?.scrollIntoView({ behavior: 'smooth' });
   }, [diaryContent]);
 
-  const addMessage = (text, sender) => {
-    const newMessage = {
-      id: Date.now(),
-      text,
-      sender,
-      visible: true,
-      typing: true
-    };
-    setDiaryContent(prev => [newMessage, ...prev]);
-    setTimeout(() => {
-      setDiaryContent(prev =>
-        prev.map(msg =>
-          msg.id === newMessage.id ? { ...msg, typing: false } : msg
-        )
-      );
-      setTimeout(() => {
-        setDiaryContent(prev =>
-          prev.map(msg =>
-            msg.id === newMessage.id ? { ...msg, visible: false } : msg
-          )
-        );
-      }, 3000);
-    }, text.length * 80);
-  };
-
   const handleSubmit = async (e) => {
     if (e) e.preventDefault();
     const text = userInput.trim();
     if (!text) return;
-  
-    // Show user's message immediately
+
+    const id = Date.now();
+
+    // Show user's message
     const userMsg = {
-      id: Date.now(),
+      id,
       text,
       sender: 'user',
       visible: true,
       typing: false
     };
     setDiaryContent(prev => [userMsg, ...prev]);
-  
-    // Clear input
     setUserInput('');
     inputRef.current.focus();
-  
-    // Send to backend
-    try {
-      const res = await fetch('http://localhost:8081/api/input', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ input: text })
-      });
-      const data = await res.json();
-      const reply = data?.response || "No response received.";
-  
-      const systemMsg = {
-        id: Date.now() + 1,
-        text: reply,
-        sender: 'system',
-        visible: true,
-        typing: false
-      };
-      setDiaryContent(prev => [systemMsg, ...prev]);
-    } catch (error) {
-      const errorMsg = {
-        id: Date.now() + 2,
-        text: 'Error connecting to diary. Please try again later.',
-        sender: 'system',
-        visible: true,
-        typing: false
-      };
-      setDiaryContent(prev => [errorMsg, ...prev]);
-      console.error(error);
-    }
+
+    // Fade out user message after delay
+    setTimeout(() => {
+      setDiaryContent(prev =>
+        prev.map(msg =>
+          msg.id === id ? { ...msg, visible: false } : msg
+        )
+      );
+
+      // Send to backend after fade
+      setTimeout(async () => {
+        try {
+          const res = await fetch('http://localhost:8081/api/input', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ input: text })
+          });
+          const data = await res.json();
+          const reply = data?.response || "No response.";
+
+          const systemMsg = {
+            id: Date.now(),
+            text: reply,
+            sender: 'system',
+            visible: true,
+            typing: true
+          };
+          setDiaryContent(prev => [systemMsg, ...prev]);
+
+          // Typing + fadeout
+          setTimeout(() => {
+            setDiaryContent(prev =>
+              prev.map(msg =>
+                msg.id === systemMsg.id ? { ...msg, typing: false } : msg
+              )
+            );
+            setTimeout(() => {
+              setDiaryContent(prev =>
+                prev.map(msg =>
+                  msg.id === systemMsg.id ? { ...msg, visible: false } : msg
+                )
+              );
+            }, 3500);
+          }, reply.length * 30);
+        } catch (error) {
+          console.error("Error:", error);
+        }
+      }, 800);
+    }, 2500);
   };
-  
 
   return (
     <div className="app-container">
@@ -108,7 +99,12 @@ function Home() {
           <div className="content" id="diaryContent">
             {diaryContent.map((message) =>
               message.visible && (
-                <p key={message.id} className={`message ${message.sender} ${message.typing ? 'ink-effect' : ''}`}>
+                <p
+                  key={message.id}
+                  className={`message ${message.sender} ${message.typing ? 'ink-effect' : ''} ${
+                    !message.visible ? 'fade-out' : ''
+                  }`}
+                >
                   {message.text}
                 </p>
               )
@@ -123,7 +119,6 @@ function Home() {
               id="userInput"
               value={userInput}
               onChange={(e) => setUserInput(e.target.value)}
-              className='journal-textarea'
             />
           </form>
         </div>

@@ -4,3 +4,4 @@ chromadb
 requests
 transformers
 torch
+google-generativeai
