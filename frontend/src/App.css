@@ -1,243 +1,226 @@
+/* Base styles */
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'EB Garamond', serif;
+}
 
-/* Import Fonts */
-@import url('https://fonts.googleapis.com/css2?family=Cinzel+Decorative&family=EB+Garamond:ital,wght@0,400;0,500;1,400&display=swap');
+.app-container {
+  display: flex;
+  min-height: 100vh;
+}
 
-/* Custom Font */
+/* Dashboard styles */
+.dashboard {
+  width: 250px;
+  background-color: #2a1a0f;
+  color: #d4b483;
+  padding: 20px;
+  border-right: 2px solid #5c3b1a;
+  box-shadow: 5px 0 15px rgba(0, 0, 0, 0.5);
+}
+
+.dashboard-header {
+  /* font-family: 'Caveat', cursive; */
+  font-size: 28px;
+  margin-bottom: 30px;
+  text-align: center;
+  border-bottom: 1px solid #5c3b1a;
+  padding-bottom: 10px;
+}
+
+.dashboard-tabs {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.tab {
+  background: none;
+  border: none;
+  color: #d4b483;
+  font-family: 'EB Garamond', serif;
+  font-size: 20px;
+  text-align: left;
+  padding: 10px 15px;
+  cursor: pointer;
+  transition: all 0.3s;
+  border-left: 3px solid transparent;
+}
+
+.tab:hover {
+  background-color: rgba(92, 59, 26, 0.3);
+  border-left: 3px solid #d4b483;
+}
+
+.tab.active {
+  background-color: rgba(92, 59, 26, 0.5);
+  border-left: 3px solid #d4b483;
+  font-weight: bold;
+}
+
+/* Diary styles */
+.app {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  background-color: #5c3b1a;
+  background-image: url('https://www.transparenttextures.com/patterns/old-paper.png');
+}
+
+.diary {
+  width: 100%;
+  max-width: 600px;
+  min-height: 80vh;
+  background-color: #f8f1d8;
+  padding: 40px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.7), inset 0 0 10px rgba(0, 0, 0, 0.2);
+  position: relative;
+  border: 15px solid #d4b483;
+  overflow: hidden;
+  background-image: url('https://www.transparenttextures.com/patterns/rice-paper.png');
+}
+
+.diary::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(
+    rgba(248, 241, 216, 0) 0%,
+    rgba(248, 241, 216, 0.8) 10%,
+    rgba(248, 241, 216, 0.2) 90%,
+    rgba(248, 241, 216, 0) 100%
+  );
+  pointer-events: none;
+}
+
+.diary::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: url('https://www.transparenttextures.com/patterns/aged-paper.png');
+  opacity: 0.3;
+  pointer-events: none;
+}
+
+.content {
+  font-size: 28px;
+  line-height: 1.5;
+  color: #3a3226;
+  min-height: 60vh;
+  font-family: 'EB Garamond', serif;
+  font-style: italic;
+  overflow-y: auto;
+  max-height: 60vh;
+  font-weight: bold; /* Bold text */
+}
+
+.input-container {
+  display: flex;
+  margin-top: 40px;
+  padding: 10px;
+  position: relative;
+}
+
+#userInput {
+  flex-grow: 1;
+  background: transparent;
+  border: none;
+  font-family: 'EB Garamond', serif;
+  font-size: 24px;
+  color: #3a3226;
+  outline: none;
+  font-style: italic;
+  padding: 5px;
+  font-weight: bold;
+}
+
+.message {
+  margin: 5px 0;
+  white-space: pre-wrap;
+  font-weight: bold;
+}
+
+.message.user {
+  text-align: right;
+  margin-left: 20%;
+}
+
+.ink-effect {
+  display: inline-block;
+  overflow: hidden;
+  white-space: nowrap;
+  border-right: 2px solid #3a3226;
+  animation: typing 3.5s steps(40, end), blink-caret 0.75s step-end infinite;
+  font-weight: bold;
+}
+
+@keyframes typing {
+  from { width: 0 }
+  to { width: 100% }
+}
+
+@keyframes blink-caret {
+  from, to { border-color: transparent }
+  50% { border-color: #3a3226 }
+}
+
+.fade-out {
+  animation: fadeOut 3s forwards;
+}
+
+@keyframes fadeOut {
+  to { 
+    opacity: 0; 
+    height: 0; 
+    margin: 0; 
+    padding: 0; 
+    transform: translateY(-20px);
+  }
+}
+
 @font-face {
-  font-family: 'fairyfont';
-  src: url('./fonts/fairyfont.TTF') format('truetype');
+  font-family: 'AnthonioScript';
+  src: url('../public/fonts/AnthonioScript.ttf') format('truetype');
   font-weight: normal;
   font-style: normal;
 }
 
-/* General Body Styling */
-body {
-  font-family: 'fairyfont', sans-serif;
-}
-
-/* Layout */
-.container {
-  display: flex;
-  height: 100vh;
-  font-family: 'fairyfont', serif;
-  background-color: #111;
-}
-
-/* Sidebar Styling */
-.sidebar {
-  background-color: #1a120b;
-  color: #d3c6b2;
-  width: 200px;
-  padding: 20px;
-  border-right: 1px solid #3a2c1a;
-  box-shadow: 2px 0 10px rgba(0, 0, 0, 0.5);
-}
-
-.title {
-  margin-bottom: 20px;
-  color: #c9b18d;
-  font-size: 2.2rem;
-  text-align: center;
-  border-bottom: 1px solid #3a2c1a;
-  padding-bottom: 10px;
-  font-family: 'fairyfont', cursive;
-  text-shadow: 1px 1px 2px #000;
-}
-
-.sidebar li {
-  position: relative;
-  padding: 12px 10px;
-  margin: 8px 0;
-  cursor: pointer;
-  border-radius: 4px;
-  transition: all 0.2s ease-in-out;
-  font-size: 1.5rem;
-  letter-spacing: 0.6px;
-  font-family: 'fairyfont', cursive;
-}
-
-.sidebar li a {
-  color: inherit;
-  text-decoration: none;
-  display: block;
-  transition: color 0.3s ease;
-}
-
-.sidebar li:hover {
-  background-color: #3a2c1a;
-  color: #f0e6d2;
-}
-
-.sidebar li.active {
-  background-color: #5c3d25;
-  color: #ffd700;
+/* .content {
+  font-size: 28px;
+  line-height: 1.5;
+  color: #3a3226;
+  min-height: 60vh;
+  font-family: 'AnthonioScript', 'EB Garamond', serif;
+  font-style: italic;
+  overflow-y: auto;
+  max-height: 60vh;
   font-weight: bold;
-  text-shadow: 0 0 5px rgba(255, 215, 0, 0.5);
+  font-size: 40px;
+  
 }
 
-.sidebar li.active::after {
-  content: '';
-  position: absolute;
-  bottom: 5px;
-  left: 10%;
-  width: 80%;
-  height: 2px;
-  background-color: #ffd700;
-  box-shadow: 0 0 6px #ffd700;
-  border-radius: 2px;
-}
-
-/* Content Area */
-.content {
-  flex: 1;
-  padding: 40px;
-  background-color: #0a0a0a;
-  position: relative;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-/* Input Section */
-.input-container {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  display: flex;
-  align-items: center;
-  gap: 20px;
-  z-index: 2;
-  pointer-events: auto;
-}
-
-.speak-prompt {
-  font-size: 1.8rem;
-  color: #3a2c1a;
-  font-style: italic;
-  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
-  opacity: 0.8;
-}
-
-.textarea-wrapper {
-  position: relative;
-  width: 100%;
-  height: 100%;
-}
-
-/* Diary Page Styling */
-.diary-page {
-  width: 60%;
-  max-width: 700px;
-  height: 80vh;
-  position: relative;
-  background: 
-    url('https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/00482fb6-6f66-4e0f-8d86-2e445c07ac9a/d4gvxp6-8d6e27c1-7f70-4e18-a06c-195c4631ab24.jpg?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7InBhdGgiOiJcL2ZcLzAwNDgyZmI2LTZmNjYtNGUwZi04ZDg2LTJlNDQ1YzA3YWM5YVwvZDRndnhwNi04ZDZlMjdjMS03ZjcwLTRlMTgtYTA2Yy0xOTVjNDYzMWFiMjQuanBnIn1dXSwiYXVkIjpbInVybjpzZXJ2aWNlOmZpbGUuZG93bmxvYWQiXX0.6HhWmWuWin4B1GyI3L6sNj4kh5EygWfv4Ao0Gd7sMhs'),
-    linear-gradient(to bottom, #fa9a00 0%, #000000 100%);
-  box-shadow: 
-    0 0 10px rgba(0, 0, 0, 0.5),
-    inset 0 0 30px rgba(0, 0, 0, 0.2);
-  border: 1px solid #8b7a5e;
-  border-radius: 2px;
-  overflow: hidden;
-  padding: 40px;
-}
-
-.diary-page::before,
-.diary-page::after {
-  content: '';
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  width: 30px;
-  background: linear-gradient(to right, rgba(0, 0, 0, 0.1), transparent);
-  pointer-events: none;
-}
-
-.diary-page::after {
-  right: 0;
-  background: linear-gradient(to left, rgba(0, 0, 0, 0.1), transparent);
-}
-
-.diary-page::after {
-  content: '';
-  position: absolute;
-  top: 20%;
-  left: 15%;
-  width: 100px;
-  height: 100px;
-  background: radial-gradient(circle, rgba(139, 0, 0, 0.05) 0%, transparent 70%);
-  border-radius: 50%;
-  pointer-events: none;
-}
-
-/* Diary Input */
-.page-content {
-  width: 100%;
-  height: 100%;
-  position: relative;
-}
-
-.diary-input {
-  width: 100%;
-  height: 100%;
-  background: none;
-  padding: 20px;
+#userInput {
+  flex-grow: 1;
+  background: transparent;
   border: none;
-  resize: none;
-  font-size: 1.5rem;
-  font-family: 'fairyfont', serif;
-  color: #3a2c1a;
-  caret-color: #3a2c1a;
+  font-family: 'AnthonioScript', serif;
+  font-size: 24px;
+  color: #3a3226;
   outline: none;
-  text-align: center;
-}
-
-.diary-input:focus {
-  color: #3a2c1a;
-}
-
-.diary-input::placeholder {
-  color: #3a2c1a;
-  opacity: 0.4;
   font-style: italic;
-}
+  padding: 5px;
+  font-weight: Heavy;
+  font-size: 40px;
+} */
 
-/* Button Styling */
-.submit-btn {
-  position: relative;
-  bottom: auto;
-  right: auto;
-  pointer-events: all;
-}
-
-.submit-btn:hover {
-  background-color: #5a4a42;
-  color: #f0e6d2;
-  transform: scale(1.05);
-}
-
-.submit-btn::after {
-  content: '';
-  position: absolute;
-  top: -5px;
-  right: -5px;
-  width: 8px;
-  height: 8px;
-  background-color: #8b0000;
-  border-radius: 50%;
-  opacity: 0.7;
-}
-
-/* Memories Page */
-.memories-page {
-  padding: 20px;
-  color: #2c1810;
-}
-
-/* Fade Out Animation */
-@keyframes fadeOut {
-  to {
-    color: transparent;
-  }
-}
+/* Font imports */
+@import url('https://fonts.googleapis.com/css2?family=Caveat&family=EB+Garamond:ital@1&display=swap');
