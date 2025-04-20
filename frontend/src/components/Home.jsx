@@ -17,6 +17,16 @@ function Home() {
 
   const handleSubmit = async (e) => {
     if (e) e.preventDefault();
+
+    // hide cursor of input-container input for 2.5s
+    const inputContainer = document.querySelector('.input-container');
+    inputContainer.style.pointerEvents = 'none';
+    inputContainer.style.opacity = '0';
+    setTimeout(() => {
+      inputContainer.style.pointerEvents = 'auto';
+      inputContainer.style.opacity = '1';
+    }, 2500);
+
     const text = userInput.trim();
     if (!text) return;
 
@@ -89,8 +99,8 @@ function Home() {
       <div className="dashboard">
         <div className="dashboard-header">Tom Riddle's Diary</div>
         <div className="dashboard-tabs">
-          <a href="/" className="tab active">Home</a>
-          <a href="/history" className="tab">History</a>
+          <a href="/" className="tab active">Whisper</a>
+          <a href="/history" className="tab">Tamper With Time</a>
         </div>
       </div>
 
