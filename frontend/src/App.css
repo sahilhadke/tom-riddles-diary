@@ -22,8 +22,9 @@ body {
 
 .dashboard-header {
   /* font-family: 'Caveat', cursive; */
-  font-size: 28px;
+  font-size: 32px;
   margin-bottom: 30px;
+  font-weight: 600;
   text-align: center;
   border-bottom: 1px solid #5c3b1a;
   padding-bottom: 10px;
@@ -33,6 +34,10 @@ body {
   display: flex;
   flex-direction: column;
   gap: 15px;
+}
+
+.dashboard-tabs a{
+  text-decoration: none;
 }
 
 .tab {
@@ -79,6 +84,8 @@ body {
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.7), inset 0 0 10px rgba(0, 0, 0, 0.2);
   position: relative;
   border: 15px solid #d4b483;
+
+  position: relative;
   overflow: hidden;
   background-image: url('https://www.transparenttextures.com/patterns/rice-paper.png');
 }
@@ -115,19 +122,35 @@ body {
   font-size: 28px;
   line-height: 1.5;
   color: #3a3226;
-  min-height: 60vh;
+  /* min-height: 60vh; */
   font-family: 'EB Garamond', serif;
   font-style: italic;
   overflow-y: auto;
   max-height: 60vh;
   font-weight: bold; /* Bold text */
+
+  position:absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  width: 100%;
 }
 
 .input-container {
   display: flex;
-  margin-top: 40px;
+  /* margin-top: 40px; */
   padding: 10px;
-  position: relative;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  max-width: 1200px;
+}
+.input-container input {
+  text-align: center;
+
+  direction: ltr;
 }
 
 #userInput {
@@ -150,8 +173,9 @@ body {
 }
 
 .message.user {
-  text-align: right;
-  margin-left: 20%;
+  /* text-align: right; */
+  /* margin-left: 20%; */
+  
 }
 
 .ink-effect {
