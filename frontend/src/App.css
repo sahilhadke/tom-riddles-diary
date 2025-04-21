@@ -146,8 +146,9 @@ body {
   left: 50%;
   transform: translate(-50%, -50%);
   max-width: 1200px;
+  width: 100%;
 }
-.input-container input {
+.input-container textarea {
   text-align: center;
 
   direction: ltr;

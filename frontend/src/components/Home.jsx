@@ -15,6 +15,13 @@ function Home() {
     diaryEndRef.current?.scrollIntoView({ behavior: 'smooth' });
   }, [diaryContent]);
 
+  const handleKeyDown = (e) => {
+    if (e.key === 'Enter' && !e.shiftKey) {
+      e.preventDefault();
+      handleSubmit();
+    }
+  };
+
   const handleSubmit = async (e) => {
     if (e) e.preventDefault();
 
@@ -23,8 +30,8 @@ function Home() {
     inputContainer.style.pointerEvents = 'none';
     inputContainer.style.opacity = '0';
     setTimeout(() => {
-      inputContainer.style.pointerEvents = 'auto';
-      inputContainer.style.opacity = '1';
+      // inputContainer.style.pointerEvents = 'auto';
+      // inputContainer.style.opacity = '1';
     }, 2500);
 
     const text = userInput.trim();
@@ -85,8 +92,11 @@ function Home() {
                   msg.id === systemMsg.id ? { ...msg, visible: false } : msg
                 )
               );
-            }, 3500);
-          }, reply.length * 30);
+
+              inputContainer.style.pointerEvents = 'auto';
+              inputContainer.style.opacity = '1';
+            }, 3500 * 2);
+          }, reply.length * 10);
         } catch (error) {
           console.error("Error:", error);
         }
@@ -100,7 +110,7 @@ function Home() {
         <div className="dashboard-header">Tom Riddle's Diary</div>
         <div className="dashboard-tabs">
           <a href="/" className="tab active">Whisper</a>
-          <a href="/history" className="tab">Tamper With Time</a>
+          <a href="/history" className="tab">Riddle's Records</a>
         </div>
       </div>
 
@@ -123,13 +133,15 @@ function Home() {
           </div>
 
           <form className="input-container" onSubmit={handleSubmit}>
-            <input
+            <textarea
+              onKeyDown={handleKeyDown}
               ref={inputRef}
               type="text"
               id="userInput"
               value={userInput}
               onChange={(e) => setUserInput(e.target.value)}
             />
+            <input type="submit" hidden />
           </form>
         </div>
       </div>
