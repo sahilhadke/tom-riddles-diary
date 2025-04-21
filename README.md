@@ -39,14 +39,22 @@ This is not just a digital diary. It’s a **living memory** that listens, refle
 git clone https://github.com/your-username/tom-riddles-diary.git
 cd tom-riddles-diary
 ```
+
+```bash
 set APIKEY in secrets.conf in place of "XXX"
+```
+---
 
 ## FrontEnd Setup
+```bash
 cd frontend
 npm install
 npm start
+```
+---
 
 ## Backend Setup
+```bash
 cd backend
 pip install -r requirements.txt
 uvicorn app:app --reload --port 8081
